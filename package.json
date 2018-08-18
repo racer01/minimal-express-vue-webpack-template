@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build:client": "webpack --config webpack.client.config.js",
-    "start:server": "webpack --config webpack.server.config.js"
+    "build:client": "webpack --mode production --config webpack.client.config.js",
+    "build:server": "webpack --mode production --config webpack.server.config.js",
+    "dev": "webpack --mode development --config webpack.server.config.js"
   },
   "dependencies": {
     "babel-core": "^6.26.3",
@@ -26,6 +27,7 @@
     "vue-template-compiler": "^2.5.17",
     "webpack-cli": "^3.1.0",
     "webpack-dev-middleware": "^3.1.3",
-    "webpack-hot-middleware": "^2.22.3"
+    "webpack-hot-middleware": "^2.22.3",
+    "webpack-merge": "^4.1.4"
   }
 }

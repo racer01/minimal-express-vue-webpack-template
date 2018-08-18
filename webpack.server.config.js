@@ -1,14 +1,9 @@
+const merge = require('webpack-merge');
 const path = require('path');
-const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
-const StartServerPlugin = require('start-server-webpack-plugin');
 
-module.exports = {
-    mode: 'development',
-    entry: [
-        'webpack/hot/poll?1000',
-        './server/index'
-    ],
+const baseConfig = {
+    entry: ['./server/index'],
     output: {
         path: path.resolve(__dirname, '.build'),
         filename: 'server.bundle.js',
@@ -18,19 +13,41 @@ module.exports = {
             {
                 test: /\.js?$/,
                 use: 'babel-loader',
-                exclude: /node_modules/
+                exclude: /node_modules/,
             }
         ],
     },
     target: 'node',
-    externals: [nodeExternals({
-        whitelist: ['webpack/hot/poll?1000']
-    })],
+    externals: [nodeExternals()],
+    node: {
+        __dirname: false, // fixes __dirname in node together with target: node
+        __filename: false, // fixes __filename in node together with target: node
+    },
+};
+
+
+//
+// development configuration
+//
+const webpack = require('webpack');
+const StartServerPlugin = require('start-server-webpack-plugin');
+const webpackHotPoll = 'webpack/hot/poll?1000';
+const devConfig = merge.smartStrategy({ externals: 'replace' })(baseConfig, {
+    mode: 'development',
+    entry: [webpackHotPoll], // include webpack hot reload to enable server-side hot reload
+    externals: [
+        nodeExternals({
+            whitelist: [
+                'webpack/hot/poll?1000', // still bundle webpack polling to enable server-side hot reload
+            ],
+        }),
+    ],
+    optimization: {
+        noEmitOnErrors: true, // don't bundle on error
+    },
     plugins: [
-        new StartServerPlugin('server.bundle.js'),
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
+        new StartServerPlugin('server.bundle.js'), // start server after bundling
+        new webpack.HotModuleReplacementPlugin(), // enables server-side hot reload
         new webpack.DefinePlugin({
             "process.env": {
                 "BUILD_TARGET": JSON.stringify('server'),
@@ -38,8 +55,21 @@ module.exports = {
         }),
     ],
     watch: true,
-    node: {
-        __dirname: false, // fixes __dirname in node together with target: node
-        __filename: false,
-    },
+});
+
+
+//
+// production configuration
+//
+const prodConfig = merge.smartStrategy()(baseConfig, {
+    mode: 'production',
+});
+
+module.exports = (_, opts) => {
+    switch (opts.mode) {
+        case 'production':
+            return prodConfig;
+        default:
+            return devConfig;
+    }
 };

@@ -7,7 +7,8 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, '.build', 'client')));
 
 import webpack from 'webpack';
-import webpackClientCfg from '../webpack.client.config.js';
+import webpackClientCfgFactory from '../webpack.client.config.js';
+const webpackClientCfg = webpackClientCfgFactory(undefined, { mode: 'development' });
 const clientCompiler = webpack(webpackClientCfg);
 import webpackDevMiddleware from 'webpack-dev-middleware';
 app.use(webpackDevMiddleware(clientCompiler, {
@@ -24,7 +25,7 @@ app.get('/', function(req, res) {
 
 app.get('/api', (req, res) => {
     res.send({
-        message: 'ASDI am a server route and can also be hot reloaded!'
+        message: 'I am a server route and can also be hot reloaded!'
     });
 })
 
