@@ -1,10 +1,9 @@
 import path from 'path';
 import express from 'express';
 
-
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, '.build', 'client')));
+app.use(express.static(path.resolve(__dirname, 'dist')));
 
 import webpack from 'webpack';
 import webpackClientCfgFactory from '../webpack.client.config.js';

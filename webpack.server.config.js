@@ -5,7 +5,7 @@ const nodeExternals = require('webpack-node-externals');
 const baseConfig = {
     entry: ['./server/index'],
     output: {
-        path: path.resolve(__dirname, '.build'),
+        path: path.resolve(__dirname, 'dist'),
         filename: 'server.bundle.js',
     },
     module: {
@@ -30,6 +30,7 @@ const baseConfig = {
 // development configuration
 //
 const webpack = require('webpack');
+const CleanPlugin = require('clean-webpack-plugin');
 const StartServerPlugin = require('start-server-webpack-plugin');
 const webpackHotPoll = 'webpack/hot/poll?1000';
 const devConfig = merge.smartStrategy({ externals: 'replace' })(baseConfig, {
@@ -46,6 +47,9 @@ const devConfig = merge.smartStrategy({ externals: 'replace' })(baseConfig, {
         noEmitOnErrors: true, // don't bundle on error
     },
     plugins: [
+        new CleanPlugin('dist', {
+            beforeEmit: false,
+        }),
         new StartServerPlugin('server.bundle.js'), // start server after bundling
         new webpack.HotModuleReplacementPlugin(), // enables server-side hot reload
         new webpack.DefinePlugin({

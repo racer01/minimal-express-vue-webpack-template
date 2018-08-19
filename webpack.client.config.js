@@ -1,12 +1,12 @@
 const merge = require('webpack-merge');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 
 const baseConfig = {
     entry: ['./client/main.js'],
     output: {
-        path: path.resolve(__dirname, '.build'),
+        path: path.resolve(__dirname, 'dist'),
         filename: 'client.bundle.js',
     },
     module: {
@@ -18,7 +18,7 @@ const baseConfig = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({
+        new HtmlPlugin({
             template: 'index.html',
         }),
         new VueLoaderPlugin(),
