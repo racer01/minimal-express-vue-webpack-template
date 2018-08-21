@@ -39,7 +39,7 @@ const devConfig = merge.smartStrategy({ externals: 'replace' })(baseConfig, {
     externals: [
         nodeExternals({
             whitelist: [
-                'webpack/hot/poll?1000', // still bundle webpack polling to enable server-side hot reload
+                webpackHotPoll, // still bundle webpack polling to enable server-side hot reload
             ],
         }),
     ],
@@ -52,11 +52,6 @@ const devConfig = merge.smartStrategy({ externals: 'replace' })(baseConfig, {
         }),
         new StartServerPlugin('server.bundle.js'), // start server after bundling
         new webpack.HotModuleReplacementPlugin(), // enables server-side hot reload
-        new webpack.DefinePlugin({
-            "process.env": {
-                "BUILD_TARGET": JSON.stringify('server'),
-            },
-        }),
     ],
     watch: true,
 });
