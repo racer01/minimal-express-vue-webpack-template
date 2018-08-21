@@ -11,10 +11,13 @@ const webpackClientCfg = webpackClientCfgFactory(undefined, { mode: 'development
 const clientCompiler = webpack(webpackClientCfg);
 import webpackDevMiddleware from 'webpack-dev-middleware';
 app.use(webpackDevMiddleware(clientCompiler, {
+    logLevel: 'silent',
     publicPath: webpackClientCfg.output.publicPath,
 }));
 import webpackHotMiddleware from 'webpack-hot-middleware';
-app.use(webpackHotMiddleware(clientCompiler));
+app.use(webpackHotMiddleware(clientCompiler, {
+    log: false,
+}));
 
 
 app.get('/', function(req, res) {

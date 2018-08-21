@@ -31,6 +31,7 @@ const baseConfig = {
 //
 const webpack = require('webpack');
 const CleanPlugin = require('clean-webpack-plugin');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const StartServerPlugin = require('start-server-webpack-plugin');
 const webpackHotPoll = 'webpack/hot/poll?1000';
 const devConfig = merge.smartStrategy({ externals: 'replace' })(baseConfig, {
@@ -50,10 +51,12 @@ const devConfig = merge.smartStrategy({ externals: 'replace' })(baseConfig, {
         new CleanPlugin('dist', {
             beforeEmit: false,
         }),
+        new FriendlyErrorsPlugin(),
         new StartServerPlugin('server.bundle.js'), // start server after bundling
         new webpack.HotModuleReplacementPlugin(), // enables server-side hot reload
     ],
     watch: true,
+    stats: 'none',
 });
 
 
