@@ -3,7 +3,7 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 const baseConfig = {
-    entry: ['./server/index'],
+    entry: ['./server/src/index'],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'server.bundle.js',
@@ -16,6 +16,11 @@ const baseConfig = {
                 exclude: /node_modules/,
             }
         ],
+    },
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname),
+        },
     },
     target: 'node',
     externals: [nodeExternals()],

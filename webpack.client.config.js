@@ -4,7 +4,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 
 const baseConfig = {
-    entry: ['./client/main.js'],
+    entry: ['./client/src/main.js'],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'client.bundle.js',
@@ -16,6 +16,11 @@ const baseConfig = {
                 use: 'vue-loader',
             }
         ]
+    },
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname),
+        },
     },
     plugins: [
         new HtmlPlugin({

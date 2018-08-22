@@ -6,7 +6,7 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, 'dist')));
 
 import webpack from 'webpack';
-import webpackClientCfgFactory from '../webpack.client.config.js';
+import webpackClientCfgFactory from '@/webpack.client.config.js';
 const webpackClientCfg = webpackClientCfgFactory(undefined, { mode: 'development' });
 const clientCompiler = webpack(webpackClientCfg);
 import webpackDevMiddleware from 'webpack-dev-middleware';
