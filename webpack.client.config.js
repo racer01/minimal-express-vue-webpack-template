@@ -63,11 +63,15 @@ const devConfig = merge.smart(baseConfig, {
 //
 // production configuration
 //
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const prodConfig = merge.smartStrategy()(baseConfig, {
     mode: 'production',
     output: {
         publicPath: '/',
     },
+    plugins: [
+        new BundleAnalyzerPlugin(),
+    ],
 });
 
 module.exports = (_, opts) => {
