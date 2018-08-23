@@ -12,6 +12,11 @@ const baseConfig = {
     module: {
         rules: [
             {
+                enforce: 'pre',
+                test: /\.(js|vue)$/,
+                loader: 'eslint-loader',
+            },
+            {
                 test: /\.vue$/,
                 loader: 'vue-loader',
             },

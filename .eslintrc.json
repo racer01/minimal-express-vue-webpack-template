@@ -1,0 +1,106 @@
+{
+    "root": true,
+    "env": {
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended"
+    ],
+    "globals": {
+        "process": false,
+        "__DEV__": false
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+    },
+    "rules": {
+        "array-bracket-newline": [
+            "error",
+            "consistent"
+        ],
+        "arrow-spacing": "error",
+        "curly": "error",
+        "block-spacing": "error",
+        "comma-dangle": ["error", "always-multiline"],
+        "eol-last": ["error", "always"],
+        "func-style": [
+            "error",
+            "declaration",
+            {
+                "allowArrowFunctions": true
+            }
+        ],
+        "implicit-arrow-linebreak": "error",
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "key-spacing": [
+            "error"
+        ],
+        "keyword-spacing": "error",
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "no-confusing-arrow": [
+            "error",
+            {
+                "allowParens": true
+            }
+        ],
+        "no-lonely-if": "error",
+        "no-multi-assign": "error",
+        "no-multi-spaces": "error",
+        "no-multiple-empty-lines": ["error", {
+            "max": 2,
+            "maxEOF": 1,
+            "maxBOF": 0
+        }],
+        "no-throw-literal": "error",
+        "no-trailing-spaces": "error",
+        "no-unneeded-ternary": "error",
+        "no-var": "error",
+        "no-whitespace-before-property": "error",
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "object-shorthand": "error",
+        "one-var": [
+            "error",
+            "never"
+        ],
+        "prefer-const": "error",
+        "prefer-destructuring": "error",
+        "prefer-rest-params": "error",
+        "prefer-spread": "error",
+        "prefer-template": "error",
+        "quotes": [
+            "error",
+            "single",
+            {
+                "allowTemplateLiterals": true
+            }
+        ],
+        "require-await": "error",
+        "semi": [
+            "error",
+            "always"
+        ],
+        "space-before-blocks": "error",
+        "space-before-function-paren": [
+            "error",
+            {
+                "anonymous": "always",
+                "named": "ignore",
+                "asyncArrow": "always"
+            }
+        ],
+        "template-curly-spacing": "error",
+        "yoda": "error"
+    }
+}

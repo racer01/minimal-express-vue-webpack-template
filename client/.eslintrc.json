@@ -1,0 +1,22 @@
+{
+    "env": {
+        "browser": true
+    },
+    "extends": [
+        "plugin:vue/recommended"
+    ],
+    "globals": {
+        "process": false,
+        "__DEV__": false
+    },
+    "plugins": [
+        "vue"
+    ],
+    "rules": {
+        "strict": [
+            "error",
+            "never"
+        ],
+        "vue/html-indent": ["error", 4]
+    }
+}

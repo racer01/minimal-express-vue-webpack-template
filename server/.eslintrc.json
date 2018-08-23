@@ -1,0 +1,20 @@
+{
+    "env": {
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended"
+    ],
+    "globals": {
+        "process": false,
+        "__DEV__": false
+    },
+    "parser": "babel-eslint",
+    "rules": {
+        "strict": [
+            "error",
+            "never"
+        ],
+        "no-console": "off"
+    }
+}
