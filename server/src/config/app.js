@@ -5,20 +5,8 @@ const app = express();
 
 app.use(express.static(path.resolve(__dirname, 'dist')));
 
-import webpack from 'webpack';
-import webpackClientCfgFactory from '@/webpack.client.config.js';
-const webpackClientCfg = webpackClientCfgFactory(undefined, { mode: 'development' });
-const clientCompiler = webpack(webpackClientCfg);
-import webpackDevMiddleware from 'webpack-dev-middleware';
-app.use(webpackDevMiddleware(clientCompiler, {
-    logLevel: 'silent',
-    publicPath: webpackClientCfg.output.publicPath,
-}));
-import webpackHotMiddleware from 'webpack-hot-middleware';
-app.use(webpackHotMiddleware(clientCompiler, {
-    log: false,
-}));
-
+import configClientHotMiddleware from './client-hot-reload.js';
+configClientHotMiddleware(app);
 
 app.get('/', function (req, res) {
     console.log(path.resolve(__dirname, 'index.html'));
