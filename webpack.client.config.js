@@ -15,6 +15,10 @@ const baseConfig = {
                 test: /\.vue$/,
                 loader: 'vue-loader',
             },
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+            },
         ],
     },
     resolve: {
