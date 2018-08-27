@@ -1,5 +1,5 @@
 import webpack from 'webpack';
-import webpackClientCfgFactory from '@/webpack.client.config.js';
+import webpackClientCfgFactory from '~/webpack.client.config.js';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 

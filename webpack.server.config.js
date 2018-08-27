@@ -25,7 +25,7 @@ const baseConfig = {
     },
     resolve: {
         alias: {
-            '@': path.resolve(__dirname),
+            '~': path.resolve(__dirname),
         },
     },
     target: 'node',
