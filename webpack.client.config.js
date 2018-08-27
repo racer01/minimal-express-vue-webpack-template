@@ -47,7 +47,9 @@ const webpack = require('webpack');
 const webpackHotMiddleware = 'webpack-hot-middleware/client';
 const devConfig = merge.smart(baseConfig, {
     mode: 'development',
-    entry: [webpackHotMiddleware],
+    entry: [
+        webpackHotMiddleware, // include webpack middleware to enable client-side hot reload
+    ],
     output: {
         publicPath: '/',
     },
@@ -55,7 +57,7 @@ const devConfig = merge.smart(baseConfig, {
         noEmitOnErrors: true, // don't bundle on error
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
+        new webpack.HotModuleReplacementPlugin(), // enables client-side hot reload
     ],
 });
 

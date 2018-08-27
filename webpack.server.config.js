@@ -17,7 +17,7 @@ const baseConfig = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.js?$/,
+                test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
             },
@@ -29,7 +29,9 @@ const baseConfig = {
         },
     },
     target: 'node',
-    externals: [nodeExternals()],
+    externals: [
+        nodeExternals(), // exclude node_modules from bundle
+    ],
     node: {
         __dirname: false, // fixes __dirname in node together with target: node
         __filename: false, // fixes __filename in node together with target: node
@@ -47,11 +49,13 @@ const StartServerPlugin = require('start-server-webpack-plugin');
 const webpackHotPoll = 'webpack/hot/poll?1000';
 const devConfig = merge.smartStrategy({ externals: 'replace' })(baseConfig, {
     mode: 'development',
-    entry: [webpackHotPoll], // include webpack hot reload to enable server-side hot reload
+    entry: [
+        webpackHotPoll, // include webpack hot reload to enable server-side hot reload
+    ],
     externals: [
         nodeExternals({
             whitelist: [
-                webpackHotPoll, // still bundle webpack polling to enable server-side hot reload
+                webpackHotPoll, // bundle webpack polling to enable server-side hot reload
             ],
         }),
     ],
@@ -67,7 +71,7 @@ const devConfig = merge.smartStrategy({ externals: 'replace' })(baseConfig, {
         new webpack.HotModuleReplacementPlugin(), // enables server-side hot reload
     ],
     watch: true,
-    stats: 'none',
+    stats: 'none', // disable console log for friendly errors plugin
 });
 
 
@@ -75,7 +79,7 @@ const devConfig = merge.smartStrategy({ externals: 'replace' })(baseConfig, {
 // production configuration
 //
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const prodConfig = merge.smartStrategy()(baseConfig, {
+const prodConfig = merge.smart(baseConfig, {
     mode: 'production',
     plugins: [
         new BundleAnalyzerPlugin(),
