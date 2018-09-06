@@ -1,9 +1,5 @@
 {
     "rules": {
-        "strict": [
-            "error",
-            "never"
-        ],
         "no-console": "off"
     }
 }

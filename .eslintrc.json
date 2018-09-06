@@ -96,6 +96,10 @@
                 "asyncArrow": "always"
             }
         ],
+        "strict": [
+            "error",
+            "never"
+        ],
         "template-curly-spacing": "error",
         "yoda": "error"
     }

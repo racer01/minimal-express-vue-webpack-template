@@ -10,10 +10,9 @@
         "vue"
     ],
     "rules": {
-        "strict": [
+        "vue/html-indent": [
             "error",
-            "never"
-        ],
-        "vue/html-indent": ["error", 4]
+            4
+        ]
     }
 }
