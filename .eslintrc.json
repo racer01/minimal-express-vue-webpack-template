@@ -6,10 +6,6 @@
     "extends": [
         "eslint:recommended"
     ],
-    "globals": {
-        "process": false,
-        "__DEV__": false
-    },
     "parser": "babel-eslint",
     "parserOptions": {
     },

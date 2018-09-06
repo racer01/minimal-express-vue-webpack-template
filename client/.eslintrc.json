@@ -1,14 +1,11 @@
 {
     "env": {
+        "node": false,
         "browser": true
     },
     "extends": [
         "plugin:vue/recommended"
     ],
-    "globals": {
-        "process": false,
-        "__DEV__": false
-    },
     "plugins": [
         "vue"
     ],

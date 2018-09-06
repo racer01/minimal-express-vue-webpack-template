@@ -1,12 +1,4 @@
 {
-    "env": {
-        "node": true
-    },
-    "globals": {
-        "process": false,
-        "__DEV__": false
-    },
-    "parser": "babel-eslint",
     "rules": {
         "strict": [
             "error",
