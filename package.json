@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build:client": "webpack --mode production --config webpack.client.config.js",
-    "build:server": "webpack --mode production --config webpack.server.config.js",
-    "dev": "eslint webpack.server.config.js && webpack --mode development --config webpack.server.config.js"
+    "build:client": "webpack --mode=production --config=webpack.client.config.js",
+    "build:server": "webpack --mode=production --config=webpack.server.config.js",
+    "dev": "eslint webpack.server.config.js && webpack --mode=development --config=webpack.server.config.js"
   },
   "dependencies": {
     "express": "^4.16.3",
